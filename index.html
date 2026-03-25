@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Stella Clough - Frontend Developer</title>
+<link rel="stylesheet" href="./assets/css/style.css"/>
+<script src="./assets/js/vue.global.prod.min.js"></script>
+<script src="./assets/js/gsap.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- LOADER -->
+  <div id="loader" :class="{done: loaderDone}">
+    <div class="loader-inner">
+      <div class="loader-pct">{{ loaderPct }}%</div>
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill" :style="{width: loaderPct+'%'}"></div>
+      </div>
+      <div class="loader-label">Loading</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo" @click="goTo('home')">&nbsp;<span>Logo</span></div>
+    <div class="nav-links">
+      <a :class="{active: page==='work'}" @click="goTo('work')" @mouseenter="wiggleIn" @mouseleave="wiggleOut">Work</a>
+      <a :class="{active: page==='about'}" @click="goTo('about')" @mouseenter="wiggleIn" @mouseleave="wiggleOut">About</a>
+      <a href="mailto:stellaclough@gmail.com" @mouseenter="wiggleIn" @mouseleave="wiggleOut">Contact</a>
+    </div>
+    <button class="nav-menu-btn" @click="menuOpen=true">Menu</button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" :class="{hidden: !menuOpen}">
+    <button class="mobile-close" @click="menuOpen=false">Close ✕</button>
+    <a @click="goTo('home');menuOpen=false" @mouseenter="wiggleIn" @mouseleave="wiggleOut">Home</a>
+    <a @click="goTo('work');menuOpen=false" @mouseenter="wiggleIn" @mouseleave="wiggleOut">Work</a>
+    <a @click="goTo('about');menuOpen=false" @mouseenter="wiggleIn" @mouseleave="wiggleOut">About</a>
+    <a href="mailto:stellaclough@gmail.com" @click="menuOpen=false" @mouseenter="wiggleIn" @mouseleave="wiggleOut">Contact</a>
+    <div class="mobile-links">
+      <a href="https://www.linkedin.com/in/stella-clough-7aa2491b2/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/misspastelwitch" target="_blank">Github</a>
+    </div>
+  </div>
+
+  <!-- ══ HOME ══ -->
+  <div id="home" class="page" :class="{active: page==='home', 'page-enter': page==='home'}">
+    <div class="home-hero">
+      <div class="home-status">
+        <span class="status-dot"></span>
+        Frontend Developer Intern @ House of Tickets
+      </div>
+      <h1 class="home-title">Stella Clough<br><em>Junior creative developer</em></h1>
+      <p class="home-sub">Hey there! I'm Stella, a frontend designer based in the Netherlands. </br> I've always been interested in design and aesthetics, and routinely find myself wishing websites were designed better. </br> You can check out all of my latest work via the projects below.</p>
+      <blockquote class="home-quote">
+        "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away."
+        <br><br>— Antoine de Saint-Exupéry
+      </blockquote>
+      <a class="home-cta" @click="goTo('about')">
+        About me
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="11" x2="11" y2="1"/><polyline points="4,1 11,1 11,8"/></svg>
+      </a>
+    </div>
+    <hr class="home-divider"/>
+    <div class="home-work-preview" @click="goTo('work')">
+      <div>
+        <div class="wp-label">Selected work</div>
+        <div class="wp-title">View work <span class="wp-count">{{ projects.length }}</span></div>
+      </div>
+      <svg class="wp-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="18" x2="18" y2="2"/><polyline points="7,2 18,2 18,13"/></svg>
+    </div>
+  </div>
+
+  <!-- ══ WORK ══ -->
+  <div id="work" class="page" :class="{active: page==='work', 'page-enter': page==='work'}">
+    <p class="work-headline">"Helping build impactful interfaces"</p>
+    <div class="work-filters">
+      <button v-for="f in filters" :key="f" class="filter-btn" :class="{active: activeFilter===f}" @click="activeFilter=f">
+        {{ f }}<template v-if="f!=='All'"> {{ filterCount(f) }}</template>
+      </button>
+    </div>
+    <div class="project-list">
+      <div v-for="p in filteredProjects" :key="p.title" class="project-card">
+        <img :src="p.image" :alt="p.title" class="project-img"/>
+        <div class="project-body">
+          <div class="project-meta">
+            <span v-for="t in p.tags" :key="t" class="wr-tag">{{ t }}</span>
+            <span class="project-year">{{ p.year }}</span>
+          </div>
+          <h3 class="project-title">{{ p.title }}</h3>
+          <p class="project-desc">{{ p.desc }}</p>
+          <a :href="p.url" target="_blank" class="project-link">
+            View project
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="11" x2="11" y2="1"/><polyline points="4,1 11,1 11,8"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ABOUT ══ -->
+  <div id="about" class="page" :class="{active: page==='about', 'page-enter': page==='about'}">
+    <h1 class="about-title">Creating &amp; designing sleek, eye-catching websites</h1>
+    <p class="about-aside">…when I'm not travelling, learning new languages, doing sports, or gaming of course.</p>
+    <p class="about-bio">I'm a frontend developer based in the Netherlands with a passion for UX, UI and web accessibility. I enjoy unleashing my creative potential and building sleek, intuitive interfaces that everyone can use. 
+        When I'm not sitting in front of a computer, you'll probably find me sitting in front on another screen, exploring new design trends both digital and physical, hunting for new fonts, or curating my wardrobe in Animal Crossing.</p>
+    <div class="about-grid">
+      <div class="about-methods">
+        <div v-for="m in methods" :key="m.title" class="method-item">
+          <div class="method-icon">{{ m.icon }}</div>
+          <div class="method-title">{{ m.title }}</div>
+          <p class="method-desc">{{ m.desc }}</p>
+        </div>
+      </div>
+      <div>
+        <div class="about-toptal">
+          <div class="toptal-label">Recommendations</div>
+          <div class="toptal-title">Dorien Drees - professor</div>
+          <p class="toptal-desc">Stella stood out to me from the start of her FDND studies. She’s the kind of student who doesn’t
+just wait for instructions—give her a hint, and she’ll research it thoroughly, always eager to
+understand more. She’s a skilled web developer,
+capable of creating websites that are both accessible and built to last.
+What I appreciate most about Stella is her attitude: she’s kind, open to feedback, and always
+looking to improve.</p>
+          <div class="toptal-title">Justus Sturkenboom - professor</div>
+          <p class="toptal-desc">I have enjoyed working with Stella. She is kind, collegial, and receptive to feedback, which she
+actively uses to improve her skills. I am confident that she will be a valuable addition to any
+programme she chooses to join</p>
+        </div>
+      </div>
+    </div>
+    <div class="skills-section">
+      <h3>Skills &amp; Tools</h3>
+      <div class="skills-grid">
+        <span v-for="s in skills" :key="s" class="skill-pill">{{ s }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SHARED CTA + FOOTER ══ -->
+  <div class="site-bottom">
+    <div class="contact-cta">
+      <div class="cta-eyebrow">Want to team up?</div>
+      <h2 class="cta-title">Let's build something<br><span class="cta-word" :class="{'cta-word--fading': ctaWordFading}">{{ ctaWord }}</span>.</h2>
+      <div class="cta-links">
+        <a class="cta-primary" href="mailto:stellaclough@gmail.com">
+          Get in touch
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="11" x2="11" y2="1"/><polyline points="4,1 11,1 11,8"/></svg>
+        </a>
+        <a class="cta-secondary" href="mailto:stellaclough@gmail.com">stellaclough@gmail.com</a>
+      </div>
+    </div>
+    <footer>
+      <div>
+        <div class="footer-col-label">Year</div>
+        <div>2026 ©</div>
+      </div>
+      <div>
+        <div class="footer-col-label">Local time</div>
+        <div class="live-time">{{ localTime }} GMT+1</div>
+      </div>
+      <div>
+        <div class="footer-col-label">Links</div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/stella-clough-7aa2491b2/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/misspastelwitch" target="_blank">Github</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div><!-- #app -->
+
+<script src="./assets/js/app.js"></script>
+</body>
+</html>
