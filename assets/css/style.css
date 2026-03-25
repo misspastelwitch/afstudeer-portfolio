@@ -129,7 +129,7 @@ nav{
 }
 
 /* ── WORK PAGE ── */
-#work{padding:4rem var(--pad) 0}
+#work{padding:4rem var(--pad) 0; padding-bottom: 3rem;}
 .work-headline{
   font-family:var(--serif);font-style:italic;
   font-size:clamp(1.2rem,5vw,2.2rem);font-weight:400;
@@ -175,7 +175,7 @@ nav{
   /* placeholder colour in case image is missing */
   background:linear-gradient(135deg,#e8e4df 0%,#d0ccc6 100%);
 }
-.project-body{display:flex;flex-direction:column;gap:.7rem}
+.project-body{display:flex;flex-direction:column;gap:1rem}
 .project-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
 .project-year{font-size:.68rem;color:var(--muted);margin-left:auto}
 .project-title{font-family:var(--serif);font-size:clamp(1.2rem,5vw,1.6rem);font-weight:400;line-height:1.2}
@@ -234,7 +234,7 @@ nav{
 /* ── CONTACT / CTA ── */
 .contact-cta{
   padding:3rem var(--pad);
-  border-top:1px solid var(--border);margin-top:auto;padding-top:3rem;
+  border-top:1px solid var(--border);
 }
 .cta-eyebrow{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
 .cta-title{

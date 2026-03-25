@@ -82,7 +82,7 @@ createApp({
       if (p.url) window.open(p.url, '_blank');
     }
 
-    const filters = ['All ', 'Design ', 'Development '];
+    const filters = ['Design ', 'Development '];
 
     const projects = [
       {
