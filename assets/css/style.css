@@ -74,9 +74,9 @@ nav{
 /* ── HOME ── */
 #home{display:flex;flex-direction:column}
 .home-hero{
-  min-height:calc(100vh - 52px);
+  min-height:58vh;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:4rem var(--pad) 2rem;
+  padding:2rem var(--pad) 1rem;
   position:relative;
 }
 .home-status{
