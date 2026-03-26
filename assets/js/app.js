@@ -8,7 +8,7 @@ createApp({
     const loaderDone = ref(false);
     const localTime = ref('');
     const activeFilter = ref('All');
-    const ctaWords = ['meaningful', 'accessible', 'cheerful'];
+    const ctaWords = ['meaningful', 'accessible', 'cheerful', 'inclusive', 'impactful', 'user-friendly', 'refreshing', 'fun'];
     const ctaWord = ref(ctaWords[0]);
     const ctaWordFading = ref(false);
     let ctaIdx = 0;
@@ -82,7 +82,7 @@ createApp({
       if (p.url) window.open(p.url, '_blank');
     }
 
-    const filters = ['Design ', 'Development '];
+    const filters = ['All', 'Design ', 'Development '];
 
     const projects = [
       {
@@ -98,7 +98,7 @@ createApp({
         title: 'Oncollaboration web app',
         desc: 'A mobile-first app that lets healthcare workers in the Netherlands & Indonesia collaborate and share patient information securely.',
         year: '2024',
-        tags: ['#Medical', '#B2C', '#Amsterdam'],
+        tags: ['#Medical', '#B2B', '#Amsterdam'],
         category: 'Development ',
         image: './assets/img/onco.png',
         url: 'https://oncollaboration.dev.fdnd.nl/'
@@ -111,6 +111,24 @@ createApp({
         category: 'Development ',
         image: './assets/img/blue.png',
         url: 'https://blue.nl/'
+      },
+            {
+        title: 'Mahjong game website',
+        desc: 'A personal project where I designed and developed a Mahjong game, implementing game logic, responsive design, and a cute user interface to provide a calm userexperience.',
+        year: '2026',
+        tags: ['#JavaScript', '#GameDevelopment', '#PersonalProject'],
+        category: 'Development ',
+        image: './assets/img/Mahjong.png',
+        url: 'https://misspastelwitch.github.io/Mahjong/'
+      },
+            {
+        title: 'Urumi - Itch.Io game',
+        desc: 'A short game I developed for the Pirate Software Game Jam, where I designed the storyline and assets to make the game engaging.',
+        year: '2026',
+        tags: ['#GameJam', '#IndieGame', '#GodotEngine'],
+        category: 'Design ',
+        image: './assets/img/urumi.png',
+        url: 'https://oliveorange.itch.io/urumi'
       },
     ];
 
