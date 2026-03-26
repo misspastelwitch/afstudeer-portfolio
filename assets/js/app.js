@@ -145,7 +145,7 @@ createApp({
 
     const skills = [
       'Figma', 'Canva', 'Prototyping', 'UX Research', 'User Testing',
-      'Wireframing', 'TypeScript', 'HTML', 'CSS', 'JavaScript',
+      'Wireframing', 'TypeScript', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'GSAP',
       'Vue.js', 'Project Management', 'Accessibility / WCAG adherence', 'Agile / Scrum'
     ];
 
