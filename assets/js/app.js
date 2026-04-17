@@ -26,7 +26,7 @@ createApp({
         }
       }, 120);
 
-        // Live GMT+1 clock
+        // Live amsterdam time zone clock
         const updateTime = () => {
         const now = new Date();
         const hh = String(now.getUTCHours() + 1).padStart(2, '0');
@@ -37,7 +37,7 @@ createApp({
         const clockTimer = setInterval(updateTime, 10000);
 
 
-      // Rotating CTA word
+      // changing word
       const wordTimer = setInterval(() => {
         ctaWordFading.value = true;
         setTimeout(() => {
